@@ -5,7 +5,6 @@ from pydantic import BaseSettings
 
 
 class Configs(BaseSettings):
-
     class Config:
         root_dir_path: str = os.path.join(
             Path(__file__).parent.parent.parent.absolute()
