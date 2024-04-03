@@ -24,3 +24,8 @@ pre-commit:
 .PHONY: test
 test:
 	rye run pytest tests
+
+# run uvicorn
+.PHONY: run_uvicorn
+run_uvicorn:
+	rye run uvicorn src.orders.app:app --reload
