@@ -1,4 +1,5 @@
 import uuid
+import pretty_errors
 from datetime import datetime
 from uuid import UUID
 from zoneinfo import ZoneInfo
