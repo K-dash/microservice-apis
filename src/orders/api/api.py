@@ -13,13 +13,28 @@ from src.orders.api.schemas import (
 from src.orders.app import app
 from starlette import status
 from starlette.responses import Response
+from typing import Optional # query parametersの型として任意項目を指定する
 
 orders = []
 
 
 @app.get("/orders", response_model=GetOrdersSchema)
-def get_orders():
-    return {"orders": orders}
+def get_orders(cancelled: Optional[bool] = None, limit: Optional[int] = None):
+    # パラメータが設定されていない場合はレスポンスをそのまま返す
+    if cancelled is None and limit is None:
+        return {"orders": orders}
+
+    query_set = [order for order in orders]
+
+    # cancelledの値をもとにクエリを絞り込む
+    if cancelled is not None:
+        query_set = [order for order in query_set if (order["status"] == "cancelled") == cancelled]
+
+    # limitの値をもとにクエリを絞り込む
+    if limit is not None and len(query_set) > limit:
+        return {"orders": query_set[:limit]}
+
+    return {"orders": query_set}
 
 
 @app.post(
