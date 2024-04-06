@@ -60,3 +60,13 @@ class ScheduleStatusSchema(Schema):
         required=True,
         validate=validate.OneOf(OrderStatus.list()),
     )
+
+
+# /kitchen/schedules/のURLパラメータを定義
+class GetKitchenScheduleParametars(Schema):
+    class Meta:
+        unknown = EXCLUDE
+
+    progress = fields.Boolean(required=False)
+    limit = fields.Integer(required=False)
+    since = fields.DateTime(required=False)

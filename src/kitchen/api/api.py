@@ -9,6 +9,7 @@ from src.kitchen.api.schemas import (
     GetScheduledOrdersSchema,
     ScheduleOrderSchema,
     ScheduleStatusSchema,
+    GetKitchenScheduleParametars,
 )
 
 # flask-somorestのBlueprintクラスのインスタンスを作成
@@ -28,13 +29,44 @@ schedules = [
 # Blueprintのroute()デコレータを使ってクラスベースのルーティングを定義
 @blueprint.route("/kitchen/schedules")
 class KitchenSchedules(MethodView):
+    # locatino=queryでURLパラメータを受け取る
+    @blueprint.arguments(GetKitchenScheduleParametars, location="query")
     # Blueprintのresponse()デコレータを使ってレスポンスペイロードのmarshmallowモデル定義
     @blueprint.response(status_code=200, schema=GetScheduledOrdersSchema)
-    def get(self):
-        return {"schedules": schedules}
+    def get(self, parameters):
+        if not parameters:
+            return {"schedules": schedules}
+        # queryパラメータをもとにクエリを絞り込む
+        query_set = [schedule for schedule in schedules]
 
-    # Blueprintのargments()デコレーターを使ってリクエストペイロードのmarshmallowモデル定義
-    @blueprint.arguments(ScheduleOrderSchema)
+        # progress
+        in_progress = parameters.get("in_progress")
+        if in_progress is not None:
+            query_set = [
+                schedule
+                for schedule in query_set
+                if schedule["status"] == "progress" == in_progress
+            ]
+
+        # cancelled
+        cancelled = parameters.get("cancelled")
+        if cancelled is not None:
+            query_set = [
+                schedule
+                for schedule in query_set
+                if schedule["status"] == "cancelled" == cancelled
+            ]
+
+        # limit
+        limit = parameters.get("limit")
+        if limit is not None and len(query_set) > limit:
+            query_set = query_set[:limit]
+
+        return {"schedules": query_set}
+
+
+    # Blueprintのargments()デコレーターを使ってリクエストペイロードのmarshmallowモデルを定義
+    @blueprint.arguments(ScheduleOrderSchema) #scheduleOrderSchemaモデルの定義に従ってリクエストペイロードの検証とマーシャリングが行われる
     @blueprint.response(status_code=201, schema=GetScheduledOrderSchema)
     def post(self):
         return schedules[0]
