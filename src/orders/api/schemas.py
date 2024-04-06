@@ -32,7 +32,7 @@ class OrderItemSchema(BaseModel):
     def quantity_non_nullable(cls, value):
         assert value is not None, "quantity may not be None"
         return value
-    
+
     # Configを使ってスキーマで定義されたいないプロパティを禁止する
     class Config:
         extra = Extra.forbid
@@ -40,7 +40,6 @@ class OrderItemSchema(BaseModel):
 
 class CreateOrderSchema(BaseModel):
     order: conlist(OrderItemSchema, min_items=1)
-
 
     class Config:
         extra = Extra.forbid
