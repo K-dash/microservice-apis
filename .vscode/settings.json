@@ -2,7 +2,7 @@
     "[python]": {
         "editor.defaultFormatter": null,
         "editor.codeActionsOnSave": {
-            "source.fixAll": true
+            "source.fixAll": "explicit"
         }
     }
 }

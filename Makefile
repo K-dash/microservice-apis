@@ -33,5 +33,4 @@ run_uvicorn:
 # run kitchen for flask
 .PHONY: run_flask
 run_flask:
-	export FLASK_APP=src/kitchen/app.py
-	rye run flask run --reload
+	export FLASK_APP=src/kitchen/app.py && rye run flask run --host=0.0.0.0 --port=4000 --reload
