@@ -25,7 +25,13 @@ pre-commit:
 test:
 	rye run pytest tests
 
-# run uvicorn
+# run orders for uvicorn
 .PHONY: run_uvicorn
 run_uvicorn:
 	rye run uvicorn src.orders.app:app --reload
+
+# run kitchen for flask
+.PHONY: run_flask
+run_flask:
+	export FLASK_APP=src/kitchen/app.py
+	rye run flask run --reload
