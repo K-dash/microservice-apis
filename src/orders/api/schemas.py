@@ -39,7 +39,7 @@ class OrderItemSchema(BaseModel):
 
 
 class CreateOrderSchema(BaseModel):
-    order: conlist(OrderItemSchema, min_items=1)
+    order: conlist(OrderItemSchema, min_length=1)
 
     class Config:
         extra = Extra.forbid
