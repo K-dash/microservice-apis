@@ -5,12 +5,12 @@ from uuid import UUID
 from zoneinfo import ZoneInfo
 
 from fastapi import HTTPException
-from src.orders.api.schemas import (
+from src.orders.Web.api.schemas import (
     CreateOrderSchema,
     GetOrderSchema,
     GetOrdersSchema,
 )
-from src.orders.app import app
+from src.orders.Web.app import app
 from starlette import status
 from starlette.responses import Response
 from typing import Optional  # query parametersの型として任意項目を指定する
