@@ -127,7 +127,6 @@ celerybeat.pid
 venv/
 env.bak/
 venv.bak/
-.python-version
 
 # Spyder project settings
 .spyderproject
@@ -155,3 +154,7 @@ cython_debug/
 
 # ruff
 .ruff_cache/
+
+# sqlite
+*.db
+*.sqlite

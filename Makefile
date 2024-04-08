@@ -28,7 +28,7 @@ test:
 # run orders for uvicorn
 .PHONY: run_uvicorn
 run_uvicorn:
-	rye run uvicorn src.orders.app:app --reload
+	rye run uvicorn src.orders.Web.app:app --reload
 
 # run kitchen for flask
 .PHONY: run_flask
