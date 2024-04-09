@@ -1,4 +1,4 @@
-from src.orders.orders_service import Order
+from src.orders.orders_service.orders import Order
 from src.orders.repository.models import OrderModel, OrderItemModel
 
 
