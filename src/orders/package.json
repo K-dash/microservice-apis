@@ -1,0 +1,12 @@
+{
+  "name": "orders",
+  "packageManager": "yarn@4.1.1",
+  "volta": {
+    "node": "20.12.1",
+    "yarn": "4.1.1"
+  },
+  "dependencies": {
+    "@stoplight/prism-cli": "^5.7.0",
+    "@stoplight/types": "^14.1.1"
+  }
+}
