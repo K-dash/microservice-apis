@@ -14,7 +14,7 @@ def generate_uuid():
 
 # すべてのモデルがBaseを継承する必要がある
 class OrderModel(Base):
-    __tablename__ = "orders"
+    __tablename__ = "order"
 
     # 各プロパティはColumnクラスを使ってデータベースの列にマッピングされる
     id = Column(String, primary_key=True, default=generate_uuid)
@@ -42,8 +42,8 @@ class OrderItemModel(Base):
     __tablename__ = "order_items"
 
     id = Column(String, primary_key=True, default=generate_uuid)
-    # 外部キーとして、ordersテーブルのidを参照する
-    order_id = Column(String, ForeignKey("orders.id"))
+    # 外部キーとして、orderテーブルのidを参照する
+    order_id = Column(String, ForeignKey("order.id"))
     product = Column(String, nullable=False)
     size = Column(String, nullable=False)
     quantity = Column(Integer, nullable=False)
@@ -52,7 +52,6 @@ class OrderItemModel(Base):
     def dict(self):
         return {
             "id": self.id,
-            "order_id": self.order_id,
             "product": self.product,
             "size": self.size,
             "quantity": self.quantity,

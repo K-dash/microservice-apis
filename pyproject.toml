@@ -20,6 +20,7 @@ dependencies = [
     "flask-cors>=4.0.0",
     "sqlalchemy>=2.0.29",
     "alembic>=1.13.1",
+    "requests>=2.31.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.10"
