@@ -1,0 +1,12 @@
+
+GET http://localhost:3000/kitchen/schedules
+
+###
+
+POST http://localhost:3001/payments
+Content-Type: application/json
+
+{
+    "order_id": "7e3403b1-52e1-46ed-b694-641686fc45eb",
+    "status": "paid"
+}
