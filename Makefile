@@ -26,11 +26,16 @@ test:
 	rye run pytest tests
 
 # run orders for uvicorn
-.PHONY: run_uvicorn
-run_uvicorn:
+.PHONY: run_uvicorn_for_orders
+run_uvicorn_for_orders:
 	rye run uvicorn src.orders.Web.app:app --reload
 
 # run kitchen for flask
 .PHONY: run_flask
 run_flask:
 	export FLASK_APP=src/kitchen/app.py && rye run flask run --host=0.0.0.0 --port=4000 --reload
+
+# run products for uvicorn
+.PHONY: run_uvicorn_for_products
+run_uvicorn_for_products:
+	rye run uvicorn src.products.server:server --reload

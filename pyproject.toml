@@ -21,6 +21,7 @@ dependencies = [
     "sqlalchemy>=2.0.29",
     "alembic>=1.13.1",
     "requests>=2.31.0",
+    "ariadne>=0.23.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.10"
