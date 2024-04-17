@@ -16,6 +16,8 @@ anyio==4.3.0
     # via starlette
 apispec==5.2.2
     # via flask-smorest
+ariadne==0.23.0
+    # via rye-python-project-template
 black==23.3.0
     # via rye-python-project-template
 certifi==2024.2.2
@@ -47,6 +49,8 @@ flask-cors==4.0.0
     # via rye-python-project-template
 flask-smorest==0.38.1
     # via rye-python-project-template
+graphql-core==3.2.3
+    # via ariadne
 h11==0.14.0
     # via uvicorn
 identify==2.5.24
@@ -116,6 +120,7 @@ sqlalchemy==2.0.29
     # via alembic
     # via rye-python-project-template
 starlette==0.37.2
+    # via ariadne
     # via fastapi
 tomli==2.0.1
     # via black
@@ -124,6 +129,7 @@ tomli==2.0.1
 typing-extensions==4.11.0
     # via alembic
     # via anyio
+    # via ariadne
     # via fastapi
     # via mypy
     # via pydantic
