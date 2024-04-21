@@ -14,6 +14,7 @@ annotated-types==0.6.0
     # via pydantic
 anyio==4.3.0
     # via starlette
+    # via watchfiles
 apispec==5.2.2
     # via flask-smorest
 ariadne==0.23.0
@@ -142,6 +143,8 @@ uvicorn==0.29.0
     # via rye-python-project-template
 virtualenv==20.23.0
     # via pre-commit
+watchfiles==0.21.0
+    # via rye-python-project-template
 webargs==8.4.0
     # via flask-smorest
 werkzeug==2.3.8
