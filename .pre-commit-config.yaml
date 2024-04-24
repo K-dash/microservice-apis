@@ -1,31 +1,23 @@
+default_stages: [commit]
 repos:
-  # ruff
-  - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: "v0.0.264"
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.3.5
     hooks:
-      - id: ruff
-        args: [--fix, --exit-non-zero-on-fix]
+    - id: ruff
+      name: Ruff check
+      description: "Run 'ruff check' for extremely fast Python linting"
+      args: [ --fix ]
 
-  # black
-  - repo: https://github.com/psf/black
-    rev: 23.3.0
-    hooks:
-      - id: black
-        args: [src/]
+    - id: ruff-format
+      name: Ruff format
+      description: "Run 'ruff format' for extremely fast Python formatting"
 
-  # mypy
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.2.0
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.0
     hooks:
-      - id: mypy
-        exclude: ^tests/|^any-path/ #
-        additional_dependencies: [pydantic, types-PyYAML==6.0.7]
-
-  # other
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
-    hooks:
-      - id: trailing-whitespace
-      - id: end-of-file-fixer
-      - id: check-yaml
-      - id: check-added-large-files
+      - id: hadolint
+        name: Lint Dockerfiles
+        description: Runs hadolint to lint Dockerfiles
+        language: system
+        types: ["dockerfile"]
+        entry: hadolint
