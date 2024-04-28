@@ -1,31 +1,34 @@
 from src.orders.orders_service.orders import Order
-from src.orders.repository.models import OrderModel, OrderItemModel
+from src.orders.repository.models import OrderItemModel, OrderModel
 
 
 class OrdersRepository:
     def __init__(self, session):
         self.session = session
 
-    def add(self, items):
+    def add(self, items, user_id):
         # 注文のレコードを作成する際、注文内のアイテムごとにレコードを作成
-        record = OrderModel(items=[OrderItemModel(**item) for item in items])
+        record = OrderModel(
+            items=[OrderItemModel(**item) for item in items], user_id=user_id
+        )
         # セッションオブジェクトにレコードを追加
         self.session.add(record)
         # Orderクラスのインスタンスを返す
         return Order(**record.dict(), order_=record)
 
     # IDでOrderModelのレコードを取得するための汎用メソッド
-    def _get(self, id_):
+    def _get(self, id_, **filters):
         # SQLAlchemyのfirstメソッドを使ってレコードを取得
         return (
             self.session.query(OrderModel)
             .filter(OrderModel.id == str(id_))
+            .filter_by(**filters)
             .first()
         )
 
-    def get(self, id_):
+    def get(self, id_, **filters):
         # _get()を使ってレコードを取得
-        order = self._get(id_)
+        order = self._get(id_, **filters)
         # 注文が存在する場合はOrderオブジェクトを返す
         if order is not None:
             return Order(**order.dict())
@@ -51,9 +54,7 @@ class OrdersRepository:
         if "items" in payload:
             for item in record.items:
                 self.session.delete(item)
-            record.items = [
-                OrderItemModel(**item) for item in payload.pop("items")
-            ]
+            record.items = [OrderItemModel(**item) for item in payload.pop("items")]
 
         # setattr関数を使ってデータベースオブジェクトを動的に更新
         for key, value in payload.items():
