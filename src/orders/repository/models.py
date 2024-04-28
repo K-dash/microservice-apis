@@ -18,6 +18,7 @@ class OrderModel(Base):
 
     # 各プロパティはColumnクラスを使ってデータベースの列にマッピングされる
     id = Column(String, primary_key=True, default=generate_uuid)
+    user_id = Column(String, nullable=False)
     status = Column(String, nullable=False, default="created")
     created = Column(DateTime, default=datetime.now(ZoneInfo("Asia/Tokyo")))
     schedule_id = Column(String)

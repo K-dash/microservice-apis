@@ -19,10 +19,14 @@ apispec==5.2.2
     # via flask-smorest
 ariadne==0.23.0
     # via rye-python-project-template
+asttokens==2.4.1
+    # via stack-data
 black==23.3.0
     # via rye-python-project-template
 certifi==2024.2.2
     # via requests
+cffi==1.16.0
+    # via cryptography
 cfgv==3.3.1
     # via pre-commit
 charset-normalizer==3.3.2
@@ -33,11 +37,18 @@ click==8.1.3
     # via uvicorn
 colorama==0.4.6
     # via pretty-errors
+cryptography==42.0.5
+    # via rye-python-project-template
+decorator==5.1.1
+    # via ipython
 distlib==0.3.6
     # via virtualenv
 exceptiongroup==1.1.1
     # via anyio
+    # via ipython
     # via pytest
+executing==2.0.1
+    # via stack-data
 fastapi==0.110.1
     # via rye-python-project-template
 filelock==3.12.0
@@ -61,8 +72,12 @@ idna==3.6
     # via requests
 iniconfig==2.0.0
     # via pytest
+ipython==8.24.0
+    # via rye-python-project-template
 itsdangerous==2.1.2
     # via flask
+jedi==0.19.1
+    # via ipython
 jinja2==3.1.3
     # via flask
 mako==1.3.2
@@ -75,6 +90,8 @@ marshmallow==3.21.1
     # via apispec
     # via flask-smorest
     # via webargs
+matplotlib-inline==0.1.7
+    # via ipython
 mypy==1.3.0
     # via rye-python-project-template
 mypy-extensions==1.0.0
@@ -87,8 +104,12 @@ packaging==23.1
     # via marshmallow
     # via pytest
     # via webargs
+parso==0.8.4
+    # via jedi
 pathspec==0.11.1
     # via black
+pexpect==4.9.0
+    # via ipython
 platformdirs==3.5.1
     # via black
     # via virtualenv
@@ -98,10 +119,22 @@ pre-commit==3.3.2
     # via rye-python-project-template
 pretty-errors==1.2.25
     # via rye-python-project-template
+prompt-toolkit==3.0.43
+    # via ipython
+ptyprocess==0.7.0
+    # via pexpect
+pure-eval==0.2.2
+    # via stack-data
+pycparser==2.22
+    # via cffi
 pydantic==2.6.4
     # via fastapi
 pydantic-core==2.16.3
     # via pydantic
+pygments==2.17.2
+    # via ipython
+pyjwt==2.8.0
+    # via rye-python-project-template
 pytest==7.3.1
     # via rye-python-project-template
 python-json-logger==2.0.7
@@ -115,11 +148,15 @@ ruff==0.0.270
     # via rye-python-project-template
 setuptools==67.8.0
     # via nodeenv
+six==1.16.0
+    # via asttokens
 sniffio==1.3.1
     # via anyio
 sqlalchemy==2.0.29
     # via alembic
     # via rye-python-project-template
+stack-data==0.6.3
+    # via ipython
 starlette==0.37.2
     # via ariadne
     # via fastapi
@@ -127,11 +164,15 @@ tomli==2.0.1
     # via black
     # via mypy
     # via pytest
+traitlets==5.14.3
+    # via ipython
+    # via matplotlib-inline
 typing-extensions==4.11.0
     # via alembic
     # via anyio
     # via ariadne
     # via fastapi
+    # via ipython
     # via mypy
     # via pydantic
     # via pydantic-core
@@ -145,6 +186,8 @@ virtualenv==20.23.0
     # via pre-commit
 watchfiles==0.21.0
     # via rye-python-project-template
+wcwidth==0.2.13
+    # via prompt-toolkit
 webargs==8.4.0
     # via flask-smorest
 werkzeug==2.3.8

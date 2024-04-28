@@ -39,3 +39,8 @@ run_flask:
 .PHONY: run_uvicorn_for_products
 run_uvicorn_for_products:
 	rye run uvicorn src.products.server:server --reload
+
+# generate jwt
+.PHONY: generate_jwt
+generate_jwt:
+	rye run python src/jwt_generator.py

@@ -158,3 +158,6 @@ cython_debug/
 # sqlite
 *.db
 *.sqlite
+
+# private_key
+private_key.pem
