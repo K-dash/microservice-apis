@@ -33,7 +33,7 @@ run_uvicorn_for_orders:
 # run kitchen for flask
 .PHONY: run_flask
 run_flask:
-	export FLASK_APP=src/kitchen/app.py && rye run flask run --host=0.0.0.0 --port=4000 --reload
+	export FLASK_APP=src/kitchen/app.py && rye run flask run --host=0.0.0.0 --port=3000 --reload
 
 # run products for uvicorn
 .PHONY: run_uvicorn_for_products
@@ -59,3 +59,13 @@ run_dredd:
 
 stop_mocks:
 	kill $$(lsof -ti:3000) $$(lsof -ti:3001)
+
+# run order api test witch schemathesis
+.PHONY: run_orders_api_test_with_schemathesis
+run_orders_api_test_with_schemathesis: start_orders_api run_schemathesis
+
+start_orders_api:
+	rye run uvicorn src.orders.Web.app:app --reload &
+
+run_schemathesis:
+	rye run schemathesis run src/orders/oas.yaml --base-url=http://127.0.0.1:8000 --hypothesis-database=none --stateful=links --checks=all --hypothesis-suppress-health-check=too_slow
