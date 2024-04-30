@@ -44,3 +44,18 @@ run_uvicorn_for_products:
 .PHONY: generate_jwt
 generate_jwt:
 	rye run python src/jwt_generator.py
+
+# run order api test with dredd.PHONY: all start_mocks run_dredd stop_mocks
+.PHONY: all start_mocks run_dredd stop_mocks
+run_orders_api_test_with_dredd: start_mocks run_dredd stop_mocks
+
+start_mocks:
+	cd src/orders && yarn prism mock kitchen.yaml --port 3000 &
+	cd src/orders && yarn prism mock payments.yaml --port 3001 &
+	sleep 5
+
+run_dredd:
+	export PATH=".venv/bin:$$PATH" && dredd src/orders/oas.yaml http://127.0.0.1:8000 --server "rye run uvicorn src.orders.Web.app:app" --hookfiles=src/orders/hooks.py --language=python
+
+stop_mocks:
+	kill $$(lsof -ti:3000) $$(lsof -ti:3001)

@@ -3,7 +3,7 @@ from pathlib import Path
 import jwt
 from cryptography.x509 import load_pem_x509_certificate
 
-public_key_text = Path(Path(__file__).parent / "../../../../public_key.pem").read_text()
+public_key_text = Path(Path(__file__).parent / "../../../../cert/public_key.pem").read_text()
 public_key = load_pem_x509_certificate(public_key_text.encode()).public_key()
 
 

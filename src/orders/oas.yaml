@@ -46,8 +46,6 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/GetOrderSchema'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
 
     post:
       summary: Creates an order
@@ -65,6 +63,42 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetOrderSchema'
+          links:
+            GetOrder:
+              operationId: getOrder
+              parameters:
+                order_id: '$response.body#/id'
+              description: >
+                The `id` value returned in the response can be used as
+                the `order_id` parameter in `GET /orders/{order_id}
+            UpdateOrder:
+              operationId: updateOrder
+              parameters:
+                order_id: '$response.body#/id'
+              description: >
+                The `id` value returned in the response can be used as
+                the `order_id` parameter in `PUT /orders/{order_id}
+            DeleteOrder:
+              operationId: deleteOrder
+              parameters:
+                order_id: '$response.body#/id'
+              description: >
+                The `id` value returned in the response can be used as
+                the `order_id` parameter in `DELETE /orders/{order_id}
+            CancelOrder:
+              operationId: cancelOrder
+              parameters:
+                order_id: '$response.body#/id'
+              description: >
+                The `id` value returned in the response can be used as
+                the `order_id` parameter in `DELETE /orders/{order_id}/cancel
+            PayOrder:
+              operationId: payOrder
+              parameters:
+                order_id: '$response.body#/id'
+              description: >
+                The `id` value returned in the response can be used as
+                the `order_id` parameter in `DELETE /orders/{order_id}/pay
         '422':
           $ref: '#/components/responses/UnprocessableEntity'
 
